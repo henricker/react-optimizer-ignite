@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { SideBar } from './components/SideBar';
 import { Content } from './components/Content';
@@ -51,16 +51,16 @@ export function App() {
     })
   }, [selectedGenreId]);
 
-  function handleClickButton(id: number) {
+  const handleClickButtonMovie = useCallback((id: number) => {
     setSelectedGenreId(id);
-  }
+  }, [])
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <SideBar
         genres={genres}
         selectedGenreId={selectedGenreId}
-        buttonClickCallback={handleClickButton}
+        buttonClickCallback={handleClickButtonMovie}
       />
 
       <Content
